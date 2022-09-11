@@ -181,7 +181,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                             FocusScope.of(context)
                                                 .unfocus(); //// for hide keyboard
                                             if(!await cubit.checkConnexion()){
-                                              showToast(msg: "تحقق من وجود الانترنت");
+                                              showToast(msg: "!تحقق من وجود الانترنت");
                                               return ;
                                             }
 
