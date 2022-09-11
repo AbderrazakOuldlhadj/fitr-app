@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "163769986466",
+    "project_id": "fitr-17cf3",
+    "storage_bucket": "fitr-17cf3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163769986466:android:efb8f754a911210c5356fb",
+        "android_client_info": {
+          "package_name": "com.example.fitr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "163769986466-m8f3ls7h66339e51970i7dusbunafqou.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fitr",
+            "certificate_hash": "e9e402282363e7e5f9da743087425c04b91cb8f5"
+          }
+        },
+        {
+          "client_id": "163769986466-q8bguj0giv79j21452930u7cr1k2g33u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXIW3S-5qkTxqemqQpex1XqcTRK7pshMo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "163769986466-q8bguj0giv79j21452930u7cr1k2g33u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
