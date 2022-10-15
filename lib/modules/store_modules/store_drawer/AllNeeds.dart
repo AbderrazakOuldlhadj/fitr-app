@@ -40,7 +40,7 @@ class AllNeeds extends StatelessWidget {
               condition: cubit.allNeeds.length > 0,
               fallback: (context) => Center(child: CircularProgressIndicator()),
               builder: (context) {
-                cubit.allNeeds.removeWhere((element) => element.data().isEmpty);
+                cubit.allNeeds.removeWhere((element) => (element.data() as List).isNotEmpty );
 
 
 
@@ -51,9 +51,9 @@ class AllNeeds extends StatelessWidget {
                   ),
                   itemBuilder: (cx, index) {
                     UserM user = cubit.getUserDetail(cubit.allNeeds[index].id);
-                    Map<String, dynamic> needs = cubit.allNeeds[index].data();
+                    Map<String, dynamic> needs = cubit.allNeeds[index].data() as Map<String,dynamic>;
                     List<String> keys =
-                    cubit.allNeeds[index].data().keys.toList();
+                    (cubit.allNeeds[index].data() as Map<String,dynamic>).keys.toList();
                     return Card(
                       elevation: 10,
                       margin: const EdgeInsets.symmetric(

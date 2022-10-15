@@ -68,143 +68,151 @@ class MyNeeds extends StatelessWidget {
                         ),
                       ),
                       child: Slidable(
-                        actionPane: SlidableScrollActionPane(),
-                        actionExtentRatio: 0.3,
-                        secondaryActions: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: IconSlideAction(
-                              color: Theme.of(context).primaryColor,
-                              caption: "تعديل",
-                              icon: Icons.edit,
-                              onTap: () {
-                                buildDialog(
-                                  context,
-                                  title: "تعديل",
-                                  sinfName: cubit.sinf.firstWhere((element) =>
-                                      element['idSinf'] ==
-                                      keys[index])['nameSinf'],
-                                  prefixIcon: FontAwesomeIcons.balanceScale,
-                                  labelText: "الوزن",
-                                  counterText: "كغ",
-                                  image: true,
-                                  imageUrl: cubit.sinf.firstWhere((element) =>
-                                      element['idSinf'] ==
-                                      keys[index])['imageUrl'],
-                                  controller: cubit.sinfController,
-                                  keyBoardType: TextInputType.numberWithOptions(
-                                      decimal: true, signed: false),
-                                  doneFunction: () {
-                                    String idSinf = keys[index];
-                                    double newNeed =
-                                        double.parse(cubit.sinfController.text);
-                                    cubit.updateNeed(idSinf, newNeed);
-                                    cubit.sinfController.clear();
 
-                                    //print("asnafNeeds= ${cubit.asnafNeeds}");
-                                  },
-                                );
-                              },
-                            ),
-                          ),
-                        ],
-                        actions: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: IconSlideAction(
-                              color: Colors.red,
-                              caption: "حذف",
-                              icon: Icons.delete,
-                              onTap: () {
-                                showDialog(
-                                    context: context,
-                                    builder: (cxd) => AlertDialog(
-                                          elevation: 10,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                          ),
-                                          content: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Text(
-                                                "هل تريد حذف ؟",
-                                                style: TextStyle(fontSize: 20),
-                                                softWrap: true,
-                                                textAlign: TextAlign.end,
-                                              ),
-                                              SizedBox(height: 10),
-                                              Container(
-                                                height: 100,
-                                                child: Image.asset(
-                                                    cubit.sinf.firstWhere(
-                                                            (element) =>
-                                                                element[
-                                                                    'idSinf'] ==
-                                                                keys[index])[
-                                                        'imageUrl'],
-                                                    fit: BoxFit.fill),
-                                              ),
-                                              SizedBox(height: 5),
-                                              Text(
-                                                cubit.sinf.firstWhere(
-                                                        (element) =>
-                                                            element['idSinf'] ==
-                                                            keys[index])[
-                                                    'nameSinf'],
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          actions: [
-                                            OutlinedButton(
-                                              style: OutlinedButton.styleFrom(
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(20),
-                                                ),
-                                              ),
-                                              child: Text(
-                                                "لا",
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 20,
-                                                  color: Colors.redAccent,
-                                                ),
-                                              ),
-                                              onPressed: () {
-                                                Navigator.pop(cxd);
-                                              },
+                        startActionPane: ActionPane(
+                          motion: ScrollMotion(),
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: SlidableAction(
+                                backgroundColor: Colors.red,
+                                label: "حذف",
+                                icon: Icons.delete,
+
+                                onPressed: (_) {
+                                  showDialog(
+                                      context: context,
+                                      builder: (cxd) => AlertDialog(
+                                        elevation: 10,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(20),
+                                        ),
+                                        content: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text(
+                                              "هل تريد حذف ؟",
+                                              style: TextStyle(fontSize: 20),
+                                              softWrap: true,
+                                              textAlign: TextAlign.end,
                                             ),
-                                            OutlinedButton(
-                                              style: OutlinedButton.styleFrom(
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                    20,
-                                                  ),
-                                                ),
+                                            SizedBox(height: 10),
+                                            Container(
+                                              height: 100,
+                                              child: Image.asset(
+                                                  cubit.sinf.firstWhere(
+                                                          (element) =>
+                                                      element[
+                                                      'idSinf'] ==
+                                                          keys[index])[
+                                                  'imageUrl'],
+                                                  fit: BoxFit.fill),
+                                            ),
+                                            SizedBox(height: 5),
+                                            Text(
+                                              cubit.sinf.firstWhere(
+                                                      (element) =>
+                                                  element['idSinf'] ==
+                                                      keys[index])[
+                                              'nameSinf'],
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
                                               ),
-                                              child: Text(
-                                                "نعم",
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 20,
-                                                    color: Colors.lightBlue),
-                                              ),
-                                              onPressed: () {
-                                                Navigator.pop(cxd);
-                                                cubit.deleteNeed(keys[index]);
-                                              },
                                             ),
                                           ],
-                                        ));
-                              },
+                                        ),
+                                        actions: [
+                                          OutlinedButton(
+                                            style: OutlinedButton.styleFrom(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                BorderRadius.circular(20),
+                                              ),
+                                            ),
+                                            child: Text(
+                                              "لا",
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20,
+                                                color: Colors.redAccent,
+                                              ),
+                                            ),
+                                            onPressed: () {
+                                              Navigator.pop(cxd);
+                                            },
+                                          ),
+                                          OutlinedButton(
+                                            style: OutlinedButton.styleFrom(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                BorderRadius.circular(
+                                                  20,
+                                                ),
+                                              ),
+                                            ),
+                                            child: Text(
+                                              "نعم",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 20,
+                                                  color: Colors.lightBlue),
+                                            ),
+                                            onPressed: () {
+                                              Navigator.pop(cxd);
+                                              cubit.deleteNeed(keys[index]);
+                                            },
+                                          ),
+                                        ],
+                                      ));
+                                },
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
+                       endActionPane: ActionPane(
+                         motion: ScrollMotion(),
+                         children: [
+                           ClipRRect(
+                             borderRadius: BorderRadius.circular(10),
+                             child: SlidableAction(
+                               backgroundColor: Theme.of(context).primaryColor,
+                               label: "تعديل",
+                               icon: Icons.edit,
+                               onPressed: (_) {
+                                 buildDialog(
+                                   context,
+                                   title: "تعديل",
+                                   sinfName: cubit.sinf.firstWhere((element) =>
+                                   element['idSinf'] ==
+                                       keys[index])['nameSinf'],
+                                   prefixIcon: FontAwesomeIcons.balanceScale,
+                                   labelText: "الوزن",
+                                   counterText: "كغ",
+                                   image: true,
+                                   imageUrl: cubit.sinf.firstWhere((element) =>
+                                   element['idSinf'] ==
+                                       keys[index])['imageUrl'],
+                                   controller: cubit.sinfController,
+                                   keyBoardType: TextInputType.numberWithOptions(
+                                       decimal: true, signed: false),
+                                   doneFunction: () {
+                                     String idSinf = keys[index];
+                                     double newNeed =
+                                     double.parse(cubit.sinfController.text);
+                                     cubit.updateNeed(idSinf, newNeed);
+                                     cubit.sinfController.clear();
+
+                                     //print("asnafNeeds= ${cubit.asnafNeeds}");
+                                   },
+                                 );
+                               },
+                             ),
+                           ),
+                         ],
+                       ),
+                       // actionExtentRatio: 0.3,
+
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                             vertical: 8.0,

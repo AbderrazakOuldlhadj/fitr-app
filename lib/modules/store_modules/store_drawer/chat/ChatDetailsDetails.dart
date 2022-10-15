@@ -69,7 +69,7 @@ class ChatDetailsScreen extends StatelessWidget {
                         separatorBuilder: (cx, _) => SizedBox(height: 15.0),
                         itemBuilder: (cx, index) {
                           var message =
-                              Message.fromJson(json: messages[index].data());
+                              Message.fromJson(json: messages[index].data() as Map<String,dynamic>);
                           if (message.receiverId != receiverUser.uId)
                             return messageReceiver(message.text);
 

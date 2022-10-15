@@ -46,10 +46,11 @@ class ChatsScreen extends StatelessWidget {
                   final friends = snapshot.data!.docs;
                   return Expanded(
                     child: ListView.separated(
+                      physics: BouncingScrollPhysics(),
                       itemCount: friends.length,
                       separatorBuilder: (cx, _) => Container(height: 10),
                       itemBuilder: (cx, index) {
-                        UserM user = UserM.fromJson(json: friends[index].data());
+                        UserM user = UserM.fromJson(json: friends[index].data() as Map<String,dynamic>);
 
                         return ListTile(
                           title: Text(

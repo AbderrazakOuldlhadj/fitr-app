@@ -641,7 +641,7 @@ class AppCubit extends Cubit<AppStates> {
     try {
       DocumentSnapshot res =
           await FirebaseFirestore.instance.collection('needs').doc(uId).get();
-      asnafNeed = res.data()!;
+      asnafNeed = res.data()! as Map<String,dynamic>;
     } catch (error) {
       print(error);
     }

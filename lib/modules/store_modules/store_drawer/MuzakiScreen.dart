@@ -72,92 +72,93 @@ class MuzakiScreen extends StatelessWidget {
                           color:
                               Theme.of(context).primaryColor.withOpacity(0.8),
                           child: Slidable(
-                            actionPane: SlidableScrollActionPane(),
-                            actionExtentRatio: 0.3,
-                            actions: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(15.0),
-                                child: IconSlideAction(
-                                  color: Colors.red,
-                                  caption: "حذف",
-                                  icon: Icons.delete,
-                                  onTap: () {
-                                    showDialog(
-                                        context: context,
-                                        builder: (cxd) => AlertDialog(
-                                              elevation: 10,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
-                                              ),
-                                              content: Text(
-                                                "هل تريد إرجاع الأوزان إلى المخزون ؟",
-                                                style: TextStyle(fontSize: 20),
-                                                softWrap: true,
-                                                textAlign: TextAlign.end,
-                                              ),
-                                              actions: [
-                                                OutlinedButton(
-                                                  style: OutlinedButton.styleFrom(
-                                                    shape: RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20),
-                                                    ),
+                            startActionPane: ActionPane(
+                              motion: ScrollMotion(),
+                              extentRatio: 0.3,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  child: SlidableAction(
+                                    backgroundColor: Colors.red,
+                                    label: "حذف",
+                                    icon: Icons.delete,
+                                    onPressed: (_) {
+                                      showDialog(
+                                          context: context,
+                                          builder: (cxd) => AlertDialog(
+                                            elevation: 10,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(20),
+                                            ),
+                                            content: Text(
+                                              "هل تريد إرجاع الأوزان إلى المخزون ؟",
+                                              style: TextStyle(fontSize: 20),
+                                              softWrap: true,
+                                              textAlign: TextAlign.end,
+                                            ),
+                                            actions: [
+                                              OutlinedButton(
+                                                style: OutlinedButton.styleFrom(
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                    BorderRadius.circular(
+                                                        20),
                                                   ),
-                                                  child: Text(
-                                                    "لا",
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 20,
-                                                        color: Colors.redAccent),
-                                                  ),
-                                                  onPressed: () {
-                                                    Navigator.pop(cxd);
-                                                    cubit.deleteClient(
-                                                        idClient:
-                                                            clientList[index]
-                                                                ['idClient']);
-                                                  },
                                                 ),
-                                                OutlinedButton(
-                                                  style: OutlinedButton.styleFrom(
-                                                    shape: RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20),
-                                                    ),
-                                                  ),
-                                                  child: Text(
-                                                    "نعم",
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 20,
-                                                        color: Colors.lightBlue),
-                                                  ),
-                                                  onPressed: () {
-                                                    Navigator.pop(cxd);
-
-                                                    returnToStock(
-                                                        cubit, clientList, index);
-                                                    cubit.deleteClient(
-                                                        idClient:
-                                                            clientList[index]
-                                                                ['idClient']);
-                                                  },
+                                                child: Text(
+                                                  "لا",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                      FontWeight.bold,
+                                                      fontSize: 20,
+                                                      color: Colors.redAccent),
                                                 ),
-                                              ],
-                                            ));
-                                  },
-                                ),
-                              )
+                                                onPressed: () {
+                                                  Navigator.pop(cxd);
+                                                  cubit.deleteClient(
+                                                      idClient:
+                                                      clientList[index]
+                                                      ['idClient']);
+                                                },
+                                              ),
+                                              OutlinedButton(
+                                                style: OutlinedButton.styleFrom(
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                    BorderRadius.circular(
+                                                        20),
+                                                  ),
+                                                ),
+                                                child: Text(
+                                                  "نعم",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                      FontWeight.bold,
+                                                      fontSize: 20,
+                                                      color: Colors.lightBlue),
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.pop(cxd);
 
-                            ],
+                                                  returnToStock(
+                                                      cubit, clientList, index);
+                                                  cubit.deleteClient(
+                                                      idClient:
+                                                      clientList[index]
+                                                      ['idClient']);
+                                                },
+                                              ),
+                                            ],
+                                          ));
+                                    },
+                                  ),
+                                )
+                              ],
+                            ),
+
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-
                               /// The big Row
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
